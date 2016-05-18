@@ -32,7 +32,7 @@ clang -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -si
 
 After you have the `devtools` installed, you need to install the DomoR library.
 
-#### Installation method
+#### Installation method from GitHub
 
 You can install directly from our private Github repository:
   ```
@@ -49,6 +49,26 @@ You can install directly from our private Github repository:
   install_github(repo="domoinc-r/DomoR", auth_token=github_pat())
   ```
 
+#### Installation method from filesystem
+The easy way is to manually download and install from your filesystem.
+  * Download the code using git to your local filesystem.  Make sure and keep the directory named `DomoR`.
+  ```bash
+  cd /tmp
+  git clone https://git.empdev.domo.com/Chad-Maughan/DomoR.git
+  ```
+  * From R, set your working directory to the parent directory where you cloned the repository, run
+  ```
+  setwd('/tmp')
+  ```
+  * Install the library
+  ```
+  install('DomoR')
+  ```
+  * Load the library
+  ```
+  library('DomoR')
+  ```
+  
 
 ## Example Usage
 When using the DomoR package, the first thing you'll need to do is to initialize the development environment with your Domo customer instance (i.e. `CUSTOMER.domo.com` for https://CUSTOMER.domo.com) and your API access token.  To generate an API access token, log in to your Domo instance ***as an admin*** and go to [Admin > Security > Access Tokens](https://domo.domo.com/admin/security/accesstokens)
@@ -103,3 +123,10 @@ DomoR:replace_ds('ab84f24a-73d4-0188-d8aa-8fe78103a721', df)
 ```
 
 A warning will appear on the console if the schema was updated/changed.
+
+### Note
+DomoR depends on <=httr_1.0.0 version. To download earlier version of httr please run below command
+
+```
+install.packages('http://cran.r-project.org/src/contrib/Archive/httr/httr_1.0.0.tar.gz', repos=NULL, type="source")
+```
