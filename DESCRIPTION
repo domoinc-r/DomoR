@@ -12,7 +12,8 @@ LazyData: true('d)
 Imports:
     methods,
     RCurl,
-    httr (<= 1.0.0),
-    readr (<= 0.2.0),
+    httr,
+    readr,
     jsonlite,
     pryr
+    

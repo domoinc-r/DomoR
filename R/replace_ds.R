@@ -117,3 +117,15 @@ start_execution <- function(stream_id) {
   x <- httr::content(result)
   x$executionId
 }
+
+
+convertDomoDateTime <- function(v) {
+
+  date_time <- as.POSIXct(strptime(v,"%Y-%m-%dT%H:%M:%S"))
+  if (is.na(date_time[1]))
+    date_time <- as.POSIXct(strptime(v,"%Y-%m-%d %H:%M:%S"))
+  if (is.na(date_time[1]))
+    date_time <- tryCatch({ as.Date(v) }, error = function(err) { NA })
+
+  return(date_time)
+}
