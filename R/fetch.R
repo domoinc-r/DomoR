@@ -43,8 +43,10 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
 
   # handle errors
   httr::stop_for_status(get_result)
+  
+  guessEncoding <- readr::guess_encoding(get_result$content)
 
-  df <- httr::content(get_result,na=c('\\N')) # type="domo/csv"
+  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncoding$encoding[1]) # type="domo/csv"
 
   if(use.make.names){
     names(df) <- make.names(tolower(names(df)))
