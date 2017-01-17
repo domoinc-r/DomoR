@@ -33,7 +33,7 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
     ids <- get('last_data_source_list', .domo_env)
     data_source_id <- ids[[id]]
   }
-
+  
   get_url <- paste0(.domo_env$customer.url, '/api/data/v2/datasources/', data_source_id, '/dataversions/latest?includeHeader=true')
 
   all.headers <- httr::add_headers(c(.domo_env$auth.token, .domo_env$user.agent,
@@ -45,8 +45,17 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
   httr::stop_for_status(get_result)
   
   guessEncoding <- readr::guess_encoding(get_result$content)
-
-  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncoding$encoding[1]) # type="domo/csv"
+  
+  if(is.null(guessEncoding)){
+    guessEncodingValue <- 'UTF-8'
+  }else{
+    guessEncodingValue <- guessEncoding$encoding[1]
+    if(guessEncodingValue=='ASCII'){
+      guessEncodingValue <- 'UTF-8'
+    }
+  }
+  
+  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncodingValue) # type="domo/csv"
 
   if(use.make.names){
     names(df) <- make.names(tolower(names(df)))

@@ -123,7 +123,7 @@ convertDomoDateTime <- function(v) {
 
   date_time <- as.POSIXct(strptime(v,"%Y-%m-%dT%H:%M:%S"))
   if (is.na(date_time[1]))
-    date_time <- as.POSIXct(strptime(v,"%Y-%m-%d %H:%M:%S"))
+    date_time <- tryCatch({ as.POSIXct(strptime(v,"%Y-%m-%d %H:%M:%S")) }, error = function(err) { NA })
   if (is.na(date_time[1]))
     date_time <- tryCatch({ as.Date(v) }, error = function(err) { NA })
 
