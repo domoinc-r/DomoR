@@ -15,5 +15,5 @@ Imports:
     httr,
     readr,
     jsonlite,
-    pryr
-    
+    pryr,
+    dplyr
