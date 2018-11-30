@@ -116,7 +116,7 @@ DomoR::create(df, name="My Data Source Name", description="My Data Source Descri
 ```
 
 ### Replace
-Replace an existing data source (and update schema if necessary)
+Replace an existing data source (and update schema if necessary). This command is available only for DataSets that were created using the R plugin or Domo Streams API.
 
 ```
 DomoR:replace_ds('ab84f24a-73d4-0188-d8aa-8fe78103a721', df)
