@@ -34,19 +34,9 @@ After you have the `devtools` installed, you need to install the DomoR library.
 
 #### Installation method from GitHub
 
-You can install directly from our private Github repository:
+You can install directly from our public Github repository:
   ```
-  install_github(repo="domoinc-r/DomoR", auth_token="<auth_token>")
-  ```
-  For the `auth_token` parameter listed above, you can [create your own personal access token](https://github.com/settings/tokens).  An access token is secure as it can be revoked without the need to change your password.
-
-  Also, if you wish, you can set your `auth_token` as an environment variable (especially helpful as you can't see your token after it is generated) and reference that variable with the `github_pat()` function.
-
-  ```bash
-  export GITHUB_PAT="<auth_token>"
-  ```
-  ```
-  install_github(repo="domoinc-r/DomoR", auth_token=github_pat())
+  install_github(repo="domoinc-r/DomoR")
   ```
 
 #### Installation method from filesystem
@@ -54,7 +44,7 @@ The easy way is to manually download and install from your filesystem.
   * Download the code using git to your local filesystem.  Make sure and keep the directory named `DomoR`.
   ```bash
   cd /tmp
-  git clone https://git.empdev.domo.com/Chad-Maughan/DomoR.git
+  git clone https://github.com/domoinc-r/DomoR.git
   ```
   * From R, set your working directory to the parent directory where you cloned the repository, run
   ```
@@ -116,7 +106,7 @@ DomoR::create(df, name="My Data Source Name", description="My Data Source Descri
 ```
 
 ### Replace
-Replace an existing data source (and update schema if necessary)
+Replace an existing data source (and update schema if necessary). This command is available only for DataSets that were created using the R plugin or Domo Streams API.
 
 ```
 DomoR:replace_ds('ab84f24a-73d4-0188-d8aa-8fe78103a721', df)

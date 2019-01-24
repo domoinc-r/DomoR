@@ -1,13 +1,13 @@
 #' Replace a data source from a data.frame
 #'
-#' @param id A GUID corresponding to the datasource ID from Domo.
+#' @param data_source_id A GUID corresponding to the datasource ID from Domo.
 #' @param data A data.frame from which to create a data source.
 #' @param ... Additional curl and httr parameters
 #' @export
 #' @examples
 #' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
 #' df <- data.frame(matrix(rnorm(20), nrow=10))
-#' DomoR::replace_ds(id,df)
+#' DomoR::replace_ds(data_source_id,df)
 replace_ds <- function(data_source_id,data,...) {
 
   # check that required env variables exist
