@@ -10,9 +10,11 @@
 #' @return A \code{data.frame} containing a list of available datasets
 #' @export
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-#' DomoR::list_ds()
-#' DomoR::list_ds(limit=10, name="sales+results")
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#'   DomoR::list_ds()
+#'   DomoR::list_ds(limit=10, name="sales+results")
+#' }
 list_ds <- function(limit=50, name=NULL, offset=0, owner_id=NULL, display_type=NULL, data_provider=NULL, order_by=NULL) {
 
   # check that required env variables exist

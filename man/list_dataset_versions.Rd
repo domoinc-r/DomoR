@@ -15,6 +15,8 @@ list_dataset_versions(id, use.dataversions.json = FALSE)
 Determine dataversions based on dataset Id
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-DomoR::list_dataset_versions(id='d0b246-3b41')
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+  DomoR::list_dataset_versions(id='d0b246-3b41')
+}
 }

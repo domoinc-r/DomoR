@@ -4,8 +4,10 @@
 #' @param use.dataflows.json TRUE returns pretty json output
 #' @export
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-#' DomoR::list_dataflows(outDataSourceId='d0b246-3b41', use.dataflows.json=FALSE)
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#'   DomoR::list_dataflows(outDataSourceId='d0b246-3b41', use.dataflows.json=FALSE)
+#' }
 list_dataflows <- function(outDataSourceId=NULL, use.dataflows.json=FALSE){
 
   # check that required env variables exist

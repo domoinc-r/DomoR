@@ -15,5 +15,7 @@ init(customer, token, config = NULL, verbose = FALSE)
 Initialize Domo package
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+}
 }

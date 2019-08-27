@@ -12,21 +12,13 @@
 #' @param token The DEV token required for API access.
 #' @export
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' }
 init <- function(customer,
                        token,
                        config=NULL,
                        verbose=FALSE) {
-
-  # check we have httr
-  if (!requireNamespace("httr", quietly = TRUE)) {
-    stop("'httr' is needed for the DomoR package", call. = FALSE)
-  }
-
-  # check we have pryr
-  if (!requireNamespace("pryr", quietly = TRUE)) {
-    stop("'pryr' is needed for the DomoR package", call. = FALSE)
-  }
 
   # check pluginstatus
   get_pluginstatus_result <- httr::GET('https://s3.amazonaws.com/domoetl/get/R2.json')

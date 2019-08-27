@@ -5,9 +5,11 @@
 #' @param ... Additional curl and httr parameters
 #' @export
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-#' df <- data.frame(matrix(rnorm(20), nrow=10))
-#' DomoR::replace_ds(data_source_id,df)
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#'   df <- data.frame(matrix(rnorm(20), nrow=10))
+#'   DomoR::replace_ds(data_source_id,df)
+#' }
 replace_ds <- function(data_source_id,data,...) {
 
   # check that required env variables exist

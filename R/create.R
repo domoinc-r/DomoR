@@ -5,8 +5,10 @@
 #' @param description Optional description of the dataset
 #' @export
 #' @examples
-#' df <- data.frame(matrix(rnorm(20), nrow=10))
-#' DomoR::create(df, name="My Data Source Name", description="My Data Source Description")
+#' \dontrun{
+#'   df <- data.frame(matrix(rnorm(20), nrow=10))
+#'   DomoR::create(df, name="My Data Source Name", description="My Data Source Description")
+#' }
 create <- function(data, name, description='') {
 
   # check that required env variables exist
