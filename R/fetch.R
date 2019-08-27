@@ -6,6 +6,8 @@
 #'
 #' @param id A data source id (GUID) or an index from a previous list.
 #' @param columns A vector of column names to return from the Domo datasource. (not case sensitive)
+#' @param use.make.names Logical. \code{TRUE} for change column names to
+#'   a syntactically valid name. See \code{\link[base]{make.names}}.
 #' @param ... Additional httr options
 #' @return A \code{data.frame} built from the requested Domo data source.
 #' @export

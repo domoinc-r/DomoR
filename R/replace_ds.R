@@ -83,7 +83,7 @@ uploadPartStr <- function (stream_id, exec_id, part, data) {
 
   z <- gzfile(FNAME, "wb")
 
-  write.table(data, file=z, col.names=FALSE, row.names=FALSE, sep=',', na='\\N', qmethod="double")
+  utils::write.table(data, file=z, col.names=FALSE, row.names=FALSE, sep=',', na='\\N', qmethod="double")
   close(z)
 
   size <- file.info(FNAME)$size

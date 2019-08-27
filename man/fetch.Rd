@@ -11,6 +11,9 @@ fetch(id, columns = NULL, use.make.names = FALSE, ...)
 
 \item{columns}{A vector of column names to return from the Domo datasource. (not case sensitive)}
 
+\item{use.make.names}{Logical. \code{TRUE} for change column names to
+a syntactically valid name. See \code{\link[base]{make.names}}.}
+
 \item{...}{Additional httr options}
 }
 \value{

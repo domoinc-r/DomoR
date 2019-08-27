@@ -32,7 +32,7 @@ list_ds <- function(limit=50, name=NULL, offset=0, owner_id=NULL, display_type=N
 
   name_param <- ''
   if(!is.null(name)) {
-    name_param <- paste0('&nameLike=', URLencode(name))
+    name_param <- paste0('&nameLike=', utils::URLencode(name))
   }
 
   owner_id_param <- ''
