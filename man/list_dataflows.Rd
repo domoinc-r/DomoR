@@ -15,6 +15,8 @@ list_dataflows(outDataSourceId = NULL, use.dataflows.json = FALSE)
 Determine dataflows inputs and outputs based of dataflow datasetId
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-DomoR::list_dataflows(outDataSourceId='d0b246-3b41', use.dataflows.json=FALSE)
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+  DomoR::list_dataflows(outDataSourceId='d0b246-3b41', use.dataflows.json=FALSE)
+}
 }

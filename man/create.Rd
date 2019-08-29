@@ -17,6 +17,8 @@ create(data, name, description = "")
 Create a data source from a data.frame
 }
 \examples{
-df <- data.frame(matrix(rnorm(20), nrow=10))
-DomoR::create(df, name="My Data Source Name", description="My Data Source Description")
+\dontrun{
+  df <- data.frame(matrix(rnorm(20), nrow=10))
+  DomoR::create(df, name="My Data Source Name", description="My Data Source Description")
+}
 }

@@ -1,8 +1,14 @@
+# Import functions
+#' @importFrom utils URLencode write.table
+#' @importFrom jsonlite toJSON
+#' @importFrom httr GET POST add_headers content stop_for_status
+#' @ImportFrom readr guess_encoding
+#' @importFrom dplyr bind_rows left_join
 
 # add empty .domo_env as parent
 .domo_env <- new.env()
 
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   packageStartupMessage("Welcome to DomoR")
 }
 
@@ -10,23 +16,17 @@
 #'
 #' @param customer The customer ID or base URL.  e.g.  acme.domo.com  or  acme
 #' @param token The DEV token required for API access.
+#' @param config Default is \code{NULL}.
+#' @param verbose Default is \code{TRUE}.
 #' @export
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' }
 init <- function(customer,
-                       token,
-                       config=NULL,
-                       verbose=FALSE) {
-
-  # check we have httr
-  if (!requireNamespace("httr", quietly = TRUE)) {
-    stop("'httr' is needed for the DomoR package", call. = FALSE)
-  }
-
-  # check we have pryr
-  if (!requireNamespace("pryr", quietly = TRUE)) {
-    stop("'pryr' is needed for the DomoR package", call. = FALSE)
-  }
+                 token,
+                 config=NULL,
+                 verbose=FALSE) {
 
   # check pluginstatus
   get_pluginstatus_result <- httr::GET('https://s3.amazonaws.com/domoetl/get/R2.json')

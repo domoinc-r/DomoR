@@ -11,6 +11,9 @@ fetch(id, columns = NULL, use.make.names = FALSE, ...)
 
 \item{columns}{A vector of column names to return from the Domo datasource. (not case sensitive)}
 
+\item{use.make.names}{Logical. \code{TRUE} for change column names to
+a syntactically valid name. See \code{\link[base]{make.names}}.}
+
 \item{...}{Additional httr options}
 }
 \value{
@@ -22,11 +25,13 @@ previous list() index from Domo,
 converts it to a data.frame and returns.
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247')
-DomoR::list_ds(limit=10)
-df <- DomoR::fetch(1)
-df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247',
-  c('accountid', 'lastname', 'startdate'),
-  httr::progress())
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+  df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247')
+  DomoR::list_ds(limit=10)
+  df <- DomoR::fetch(1)
+  df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247',
+                     c('accountid', 'lastname', 'startdate'),
+                     httr::progress())
+}
 }

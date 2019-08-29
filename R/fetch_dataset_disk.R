@@ -7,9 +7,14 @@
 #' @param delete.tmp.file temp file to save the data by default tmp_file is deleted
 #' @return A \code{data.frame} built from the requested Domo data source
 #' @export
+#' @importFrom utils read.csv
 #' @examples
-#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-#' df <- DomoR::fetch_to_disk(data_source_id="4826e3fb-cd23-468d-9aff-96bf5b690247", nrows=5, delete.tmp.file=TRUE)
+#' \dontrun{
+#'   DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#'   df <- DomoR::fetch_to_disk(data_source_id="4826e3fb-cd23-468d-9aff-96bf5b690247",
+#'                              nrows=5,
+#'                              delete.tmp.file=TRUE)
+#' }
 
 fetch_to_disk <- function(data_source_id, nrows=NULL, delete.tmp.file=TRUE) {
 
@@ -17,7 +22,7 @@ fetch_to_disk <- function(data_source_id, nrows=NULL, delete.tmp.file=TRUE) {
   if(!exists("customer", .domo_env) || !exists("auth.token", .domo_env)) {
     stop("Both a customer instance and token are required, please set with 'DomoR::init('customer', 'token')'")
   }
-  
+
   get_url <- paste0(.domo_env$customer.url, '/api/data/v2/datasources/', data_source_id, '/dataversions/latest?includeHeader=true')
 
   all.headers <- httr::add_headers(c(.domo_env$auth.token, .domo_env$user.agent, 'Accept'='text/csv'))
@@ -32,9 +37,9 @@ fetch_to_disk <- function(data_source_id, nrows=NULL, delete.tmp.file=TRUE) {
   httr::stop_for_status(get_result)
 
   if(is.null(nrows)){
-    df <- read.csv(file=tmp_file, header = TRUE, sep = ",")
+    df <- utils::read.csv(file=tmp_file, header = TRUE, sep = ",")
   }else{
-    df <- read.csv(file=tmp_file, header = TRUE, sep = ",", nrows=nrows)
+    df <- utils::read.csv(file=tmp_file, header = TRUE, sep = ",", nrows=nrows)
   }
 
   if(delete.tmp.file){

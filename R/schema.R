@@ -66,25 +66,12 @@ schema_data <- function(data) {
 }
 
 typeConversionText <- function(data, colindex) {
-
-  result <- 'STRING' #default column type
-
-  date_time <- convertDomoDateTime(data[,colindex])
-
-  if(!is.na(date_time[1])){
-    type <- class(date_time)[1]
-    if(type == 'Date') result <- 'DATE'
-    if(type == 'POSIXct') result <- 'DATETIME'
-    if(type == 'POSIXlt') result <- 'DATETIME'
-  }else{
-    type <- class(data[,colindex])[1]
-    if(type == 'character') result <- 'STRING'
-    if(type == 'numeric') result <- 'DOUBLE'
-    if(type == 'integer') result <- 'LONG'
-    if(type == 'Date') result <- 'DATE'
-    if(type == 'POSIXct') result <- 'DATETIME'
-    if(type == 'factor') result <- 'STRING'
-    if(type == 'ts') result <- 'DOUBLE'
-  }
-  return(result)
+  vec <- data[, colindex, drop = TRUE]
+  cls <- class(vec)[1L]
+  if (cls %in% c("numeric", "ts"))                return("DOUBLE")
+  if (cls %in% c("character", "factor"))          return("STRING")
+  if (cls == "integer")                           return("LONG")
+  if (cls == 'Date')                              return("DATE")
+  if (cls %in% c("POSIXct", "POSIXlt", "POSIXt")) return("DATETIME")
+  return("STRING")
 }

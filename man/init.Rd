@@ -10,10 +10,16 @@ init(customer, token, config = NULL, verbose = FALSE)
 \item{customer}{The customer ID or base URL.  e.g.  acme.domo.com  or  acme}
 
 \item{token}{The DEV token required for API access.}
+
+\item{config}{Default is \code{NULL}.}
+
+\item{verbose}{Default is \code{TRUE}.}
 }
 \description{
 Initialize Domo package
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+}
 }

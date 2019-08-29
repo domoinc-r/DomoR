@@ -7,7 +7,7 @@ Description: Easily interact with data in your
     creating data sources.
 Depends:
     R (>= 3.1.1)
-License: MIT
+License: MIT + file LICENSE
 LazyData: true('d)
 Imports:
     methods,
