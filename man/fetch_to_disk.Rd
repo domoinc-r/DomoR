@@ -20,6 +20,10 @@ A \code{data.frame} built from the requested Domo data source
 Retrieves a data source by GUID, saves to temp file and converts it to a data.frame and returns.
 }
 \examples{
-DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
-df <- DomoR::fetch_to_disk(data_source_id="4826e3fb-cd23-468d-9aff-96bf5b690247", nrows=5, delete.tmp.file=TRUE)
+\dontrun{
+  DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+  df <- DomoR::fetch_to_disk(data_source_id="4826e3fb-cd23-468d-9aff-96bf5b690247",
+                             nrows=5,
+                             delete.tmp.file=TRUE)
+}
 }
