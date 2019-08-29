@@ -59,7 +59,7 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
     }
   }
 
-  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncodingValue) # type="domo/csv"
+  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncodingValue, ...) # type="domo/csv"
 
   if(use.make.names){
     names(df) <- make.names(tolower(names(df)))

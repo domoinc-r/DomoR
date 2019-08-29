@@ -2,6 +2,7 @@
 
 export(create)
 export(fetch)
+export(fetch_to_disk)
 export(init)
 export(list_dataflows)
 export(list_dataset_versions)
