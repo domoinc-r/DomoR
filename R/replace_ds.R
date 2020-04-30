@@ -85,6 +85,7 @@ uploadPartStr <- function (stream_id, exec_id, part, data) {
     write.table(data, file=z, col.names=FALSE, row.names=FALSE, sep=',', na='\\N', qmethod="double")
   }else{
     encoding <- Sys.getenv("DOMOR_OUTPUT_ENCODING")
+    print(paste("Encoding used: ", encoding))
     write.table(data, file=z, col.names=FALSE, row.names=FALSE, sep=',', na='\\N', qmethod="double", fileEncoding=encoding)
   }
 
