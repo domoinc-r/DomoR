@@ -118,7 +118,7 @@ uploadPart <- function (stream_id, exec_id, part, data) {
   
   z <- gzfile(FNAME, "wb")
   
-  readr::write_csv(data,path=z,col_names=FALSE,na='\\N)
+  readr::write_csv(data,path=z,col_names=FALSE,na='\\N')
   
   close(z)
   
