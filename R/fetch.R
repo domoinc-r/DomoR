@@ -17,7 +17,7 @@
 #' df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247',
 #'   c('accountid', 'lastname', 'startdate'),
 #'   httr::progress())
-fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
+fetch <- function(id, columns = NULL, use.make.names=FALSE, guessEncoding=TRUE, ...) {
 
   # check that required env variables exist
   if(!exists("customer", .domo_env) || !exists("auth.token", .domo_env)) {
@@ -44,8 +44,12 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, ...) {
   # handle errors
   httr::stop_for_status(get_result)
   
-  guessEncoding <- readr::guess_encoding(get_result$content)
-  
+  if(guessEncoding){
+    guessEncoding <- readr::guess_encoding(get_result$content)
+  }else{
+    guessEncoding <- NULL;
+  }
+    
   if(is.null(guessEncoding)){
     guessEncodingValue <- 'UTF-8'
   }else{
