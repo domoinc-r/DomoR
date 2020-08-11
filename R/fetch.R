@@ -17,7 +17,7 @@
 #' df <- DomoR::fetch('4826e3fb-cd23-468d-9aff-96bf5b690247',
 #'   c('accountid', 'lastname', 'startdate'),
 #'   httr::progress())
-fetch <- function(id, columns = NULL, use.make.names=FALSE, guessEncoding=TRUE, ...) {
+fetch <- function(id, columns = NULL, use.make.names=FALSE, guessEncoding=TRUE, strip.white=FALSE, ...) {
 
   # check that required env variables exist
   if(!exists("customer", .domo_env) || !exists("auth.token", .domo_env)) {
@@ -59,7 +59,7 @@ fetch <- function(id, columns = NULL, use.make.names=FALSE, guessEncoding=TRUE, 
     }
   }
   
-  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncodingValue, ...) # type="domo/csv"
+  df <- httr::content(get_result,na=c('\\N'),encoding=guessEncodingValue, trim_ws=strip.white, ...) # type="domo/csv"
 
   if(use.make.names){
     names(df) <- make.names(tolower(names(df)))
