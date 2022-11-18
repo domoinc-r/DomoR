@@ -4,8 +4,15 @@
 \alias{list_ds}
 \title{List data sources}
 \usage{
-list_ds(limit = 50, name = NULL, offset = 0, owner_id = NULL,
-  display_type = NULL, data_provider = NULL, order_by = NULL)
+list_ds(
+  limit = 50,
+  name = NULL,
+  offset = 0,
+  owner_id = NULL,
+  display_type = NULL,
+  data_provider = NULL,
+  order_by = NULL
+)
 }
 \arguments{
 \item{limit}{Maximum number of entries to return.  If limit is less than 1, list all datasets that match criteria.}
