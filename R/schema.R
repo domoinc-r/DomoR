@@ -1,3 +1,12 @@
+#' Returns list of columns from schema of DOMO dataset
+#'
+#' @param data_source_id A GUID corresponding to the datasource ID from Domo.
+#' @param data A data.frame from which to create a data source.
+#' @export
+#' @examples
+#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' df <- DomoR::schema_domo(data_source_id)
+
 lookup_stream <- function (dataset_id) {
   search_stream('dataSource.id', dataset_id)
 }
