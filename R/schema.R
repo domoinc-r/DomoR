@@ -1,3 +1,5 @@
+
+
 lookup_stream <- function (dataset_id) {
   search_stream('dataSource.id', dataset_id)
 }
@@ -20,6 +22,16 @@ search_stream <- function (key, value) {
   response_content[[1]]
 }
 
+#' Returns list of columns from schema of DOMO dataset
+#'
+#' @param data_source_id A GUID corresponding to the datasource ID from Domo.
+#' @param data A data.frame from which to create a data source.
+#' @export
+#' @returns list of columns with schema details
+#' @examples
+#' DomoR::init(Sys.getenv('DOMO_BASE_URL'), Sys.getenv('DEVELOPER_TOKEN'))
+#' df <- DomoR::schema_domo(data_source_id)
+#'
 schema_domo <- function(data_source_id){
   get_url <- paste0(.domo_env$customer.url, '/api/data/v2/datasources/', data_source_id, '/schemas/latest')
   all.headers <- httr::add_headers(c(.domo_env$auth.token, .domo_env$user.agent,'Accept'='application/json'))
