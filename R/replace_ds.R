@@ -53,9 +53,9 @@ replace_ds <- function(data_source_id,data,...) {
     }
     data_frag <- data[start:end,]
     #uploadPart (id, uploadId, part, data_frag)
-    
+
     systemInfo <- Sys.info()[["sysname"]]
-    
+
     if(!is.null(systemInfo) & identical("windows", tolower(systemInfo))){
       uploadPart (stream_id, exec_id, part, data_frag)
     }else{
@@ -110,22 +110,22 @@ uploadPartStr <- function (stream_id, exec_id, part, data) {
 
 uploadPart <- function (stream_id, exec_id, part, data) {
   FNAME <- tempfile(pattern="domo", fileext=".gz")
-  
+
   put_url <- paste0(.domo_env$customer.url, "/api/data/v1/streams/", stream_id, "/executions/", exec_id, "/part/", part)
-  
+
   all.headers <- httr::add_headers(c(.domo_env$auth.token, .domo_env$user.agent,
                                      'Content-Type'='text/csv', 'Content-Encoding'='gzip'))
-  
+
   z <- gzfile(FNAME, "wb")
-  
-  readr::write_csv(data,path=z,col_names=FALSE,na='\\N')
-  
+
+  readr::write_csv(data,file=z,col_names=FALSE,na='\\N')
+
   close(z)
-  
+
   size <- file.info(FNAME)$size
   b <- readBin(f <- file(FNAME, "rb"), "raw", n=size)
   close(f)
-  
+
   result <- httr::PUT(put_url, body=b, all.headers, .domo_env$config)
   unlink(FNAME)
   json_result <- httr::content(result)
